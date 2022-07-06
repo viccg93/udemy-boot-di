@@ -4,12 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.List;
 
-@Component
+@Component //Se recomienda que el scope sea stateless, por defecto es singleton
+@RequestScope // cambia el scope a request
+//Alternativamente tenemos SessionScope para que el bean dure solo durante la session y ApplicationScope
 public class Factura {
     @Value("${factura.descripcion}")
     private String descripcion;
